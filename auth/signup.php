@@ -4,7 +4,7 @@ $name=filterReq("name");
 $email=filterReq("email");
 $pass=sha1("pass");
 $phone=filterReq("phone");
-$veriycode="0";
+$veriycode=rand(10000,99999);
 
 #to ensure email or phone doesot sign up before 
 $stmt = $con->prepare("SELECT * FROM `users` WHERE user_email=? OR user_pass=?");
@@ -22,6 +22,7 @@ else{
     if($count>0)
     {
         echo json_encode(array("status"=>"success"));
+        #sendemail($email,"Verification Code ",$veriycode);
     }
     else{
         printFail("can't insert");

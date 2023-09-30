@@ -63,4 +63,18 @@ function checkAuthenticate()
         exit;
     }
 }
+function sendemail($to_email,$subject,$verifycode)
+{
 
+  $header="From: Ecommerce App "."\n"."to:$to_email";
+#$sendCode=
+mail($to_email,$subject,$verifycode,$header);
+#if($sendCode==true)
+#{
+ #   echo "Message sent successfully";
+#}
+#else{
+ #   printFail("Message couldn't be sent");
+#}
+
+}
