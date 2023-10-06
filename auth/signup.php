@@ -2,7 +2,7 @@
 include"../connect.php";
 $name=filterReq("name");
 $email=filterReq("email");
-$pass=sha1("pass");
+$pass=sha1($_POST['pass']);
 $phone=filterReq("phone");
 $veriycode=rand(10000,99999);
 
