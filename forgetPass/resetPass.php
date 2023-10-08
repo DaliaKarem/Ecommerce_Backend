@@ -1,7 +1,7 @@
 <?php
 include"../connect.php";
 $email=filterReq("email");
-$pass=sha1($_POST['pass']);
+$pass=md5($_POST['pass']);
 $stmt=$con->prepare("UPDATE `users` SET `user_pass`=:pass WHERE `user_email`=:email ");
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':pass', $pass);
