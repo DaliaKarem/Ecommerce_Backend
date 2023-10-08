@@ -2,7 +2,7 @@
 include"../connect.php";
 $name=filterReq("name");
 $email=filterReq("email");
-$pass=sha1($_POST['pass']);
+$pass=md5($_POST['pass']);
 $phone=filterReq("phone");
 $veriycode=rand(10000,99999);
 
@@ -12,7 +12,7 @@ $stmt->execute(array($email,$phone));
 $count =$stmt->rowCount();
 if($count>0)
 {
-    printFail("phoe or email exists");
+    printFail("phone or email exists");
 }
 else{
     $stmt=$con->prepare("INSERT INTO `users`( `user_name`, `user_email`, `user_pass`, `user_verifycode`, `user_phone`) VALUES (?,?,?,?,?)");
