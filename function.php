@@ -79,20 +79,40 @@ mail($to_email,$subject,$verifycode,$header);
 
 }
 
-function getAllData($table,$cond=null,$val=null)
+function getAllData($table,$cond=null,$val=null,$json=true)
 {
   global $con;
   $data=array();
-  $stmt=$con->prepare("SELECT * From $table WHERE $cond");
+  if($cond==null)
+  {
+    $stmt=$con->prepare("SELECT * FROM $table ");
+
+  }
+  else{
+    $stmt=$con->prepare("SELECT * FROM $table WHERE $cond");
+
+  }
   $stmt->execute($val);
   $data=$stmt->fetchAll( PDO::FETCH_ASSOC);
   $count=$stmt->rowCount();
-  if($count>0)
+  if($json==true){
+    if($count>0)
   {
     echo json_encode(array("status"=>"success" ,"data"=>$data));
   }
   else{
     echo json_encode(array("status"=>"fail"));
   }
-
+  }
+  
+  else{
+    if($count>0)
+    {
+      return $data;
+    }
+    else{
+      echo json_encode(array("status"=>"fail"));
+    }
+  }
 }
+
