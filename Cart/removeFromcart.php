@@ -3,7 +3,7 @@ include"../connect.php";
 $user_id=filterReq("user_id");
 $item_id=filterReq("item_id");
 
-$stmt1=$con->prepare("DELETE FROM `favorites` WHERE `Favorites_user`=$user_id AND`Favorites_item`=$item_id ");
+$stmt1=$con->prepare("DELETE FROM `cart` WHERE `cart_user`=$user_id AND`cart_item`=$item_id ");
 
 $stmt1->execute();
 

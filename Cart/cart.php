@@ -1,13 +1,13 @@
 <?php
 include"../connect.php";
 $user_id=filterReq("id");
-$sql=$con->prepare("SELECT * FROM `favorites`
-LEFT JOIN `itemsview` ON `favorites`.`Favorites_item` = `itemsview`.`item_id`
-WHERE `favorites`.`Favorites_user` = $user_id
+$sql=$con->prepare("SELECT * FROM `cart`
+LEFT JOIN `itemsview` ON `cart`.`cart_item` = `itemsview`.`item_id`
+WHERE `cart`.`cart_user` = $user_id
 UNION
-SELECT * FROM `favorites`
-RIGHT JOIN `itemsview` ON `favorites`.`Favorites_item` = `itemsview`.`item_id`
-WHERE `favorites`.`Favorites_user` = $user_id;
+SELECT * FROM `cart`
+RIGHT JOIN `itemsview` ON `cart`.`cart_item` = `itemsview`.`item_id`
+WHERE `cart`.`cart_user` = $user_id;
 ");
 
 $sql->execute();
